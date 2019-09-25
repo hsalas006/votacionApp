@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Vote-App</title>
+</head>
+<body>
+    <header>
+        <div class="container_h">
+            <h1>Vote-App</h1>
+            <h3>Sistema de votacion...</h3>
+        </div>
+    </header>
+
+    <section>
+        <div class="container_s">
+            <div id="init_text" class="init_text">
+                <H3>Seleccione el archivo deseado en formato JSON </H3>
+                <div class="upload-btn-wrapper">
+                    <button class="btn" id="cargar">Cargar JSON</button>
+                    <input id="contentFile" type="file" name="myfile" accept="application/json" />
+                </div>
+                <div class="ejemplo">
+                    <p>El archivo JSON debe de seguir el siguiente formato:<br />
+                    {
+                        <br /> 
+                            <blockquote style="font-size:11px;">"descripción":"descripción de la votaciñon",<br />
+                            "opciones":["opción1", "opción2"],<br />
+                            "modalidad":{"modo":"unica", "cantidad":1},<br />
+                            "enBlanco":true,<br />
+                            "publica":false<br /></blockquote>
+                    }</p>   
+
+                </div> 
+            </div>  
+            <div class="vota" id="vota">
+                <h3>Proceso de votación...</h3>
+                <p id="descripcion"></p>
+                <ul id="ul" class="ul"> </ul>
+                <button class="btn"> Enviar </button>
+
+            </div> 
+        </div>
+    </section>
+
+    <footer>
+        <div class="container_f">
+            <h2>Proeycto #1 - Introducción al desarrollo Web</h2>
+            <h3>componente de votación electrónica vía Web</h3>
+            <h4>2019@TEC</h4>
+        </div>
+    </footer>
+
+    <script>
+        var jsonFile;
+
+        document.getElementById('contentFile').onchange = function(evt) {
+            try {
+                let files = evt.target.files;
+                if (!files.length) {
+                    alert('No se selecciono ningun archivo');
+                    return;
+                }
+                let file = files[0];
+                let reader = new FileReader();
+                const self = this;
+                var init_text;
+                reader.onload = (event) => {
+                    jsonFile = JSON.parse(event.target.result);
+                    console.log(jsonFile);
+                    actualizar_votación(jsonFile);
+                    
+                };
+                reader.readAsText(file);
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function addItem(name){
+            var ul = document.getElementById('ul');
+            var li = document.createElement('li');
+
+            var checkbox = document.createElement('input');
+
+            checkbox.type = "checkbox";
+            checkbox.value = 1;
+            checkbox.name = "todo[]";
+
+            li.appendChild(checkbox);
+            li.appendChild(document.createTextNode(name));
+            ul.appendChild(li);
+        }
+
+        function actualizar_votación(jsonFile){
+            init_text = document.getElementById('init_text').style.display = "none";
+            console.log(jsonFile.opciones.length);
+            document.getElementById('vota').style.display = "block";
+            document.getElementById('descripcion').innerText = jsonFile.descripcion ;
+            
+            for(i=0; i<jsonFile.opciones.length; i++){
+                addItem(jsonFile.opciones[i]);
+            }
+        }
+
+
+    </script>
+</body>
+</html>
