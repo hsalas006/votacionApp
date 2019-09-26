@@ -35,13 +35,14 @@ h1,h2,h3,h4{
     height: 40%;
     border-radius: 5%;
     background: rgb(242, 243, 191);
-    animation: secction_init 4s linear;
+    animation: secction_init 2s linear;
 }
 
 .container_s h3 {
     color: black;
     text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
+
 
 .upload-btn-wrapper {
     position: absolute;
