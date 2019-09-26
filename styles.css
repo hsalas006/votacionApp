@@ -15,6 +15,7 @@ h1,h2,h3,h4{
     width: 100%;
     height: 20%;
     background: rgb(114, 109, 109);
+    animation: header_init 2s ease-in-out;
 }
 
 .container_f{
@@ -23,6 +24,7 @@ h1,h2,h3,h4{
     width: 100%;
     height: 20%;
     background: rgb(114, 109, 109);
+    animation: footer_init 2s ease-in-out;
 }
 
 .container_s{
@@ -33,6 +35,7 @@ h1,h2,h3,h4{
     height: 40%;
     border-radius: 5%;
     background: rgb(242, 243, 191);
+    animation: secction_init 4s linear;
 }
 
 .container_s h3 {
@@ -79,5 +82,28 @@ h1,h2,h3,h4{
 }
 
 @keyframes header_init {
+    0%{
+        top: -20%;
+    }
+    100%{
+        top: 0%;
+    }
+}
 
+@keyframes footer_init {
+    0%{
+        top: 100%;
+    }
+    100%{
+        top: 80%;
+    }
+}
+
+@keyframes secction_init {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
 }
