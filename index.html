@@ -72,6 +72,7 @@
                     jsonFile = JSON.parse(event.target.result);
                     console.log(jsonFile);
                     actualizar_votación(jsonFile);
+                    console.log(jsonFile.modalidad.cantidad);
                     
                 };
                 reader.readAsText(file);
@@ -80,13 +81,19 @@
             }
         }
 
-        function addItem(name){
+        function addItem(name, cant){
             var ul = document.getElementById('ul');
             var li = document.createElement('li');
 
             var checkbox = document.createElement('input');
-
-            checkbox.type = "checkbox";
+            console.log(cant, '>>>>>>')
+            if (cant > 1){
+                checkbox.type = "checkbox";
+            }
+            else{
+                checkbox.type = "radio";
+            }
+            
             checkbox.value = 1;
             checkbox.name = "todo[]";
 
@@ -102,7 +109,7 @@
             document.getElementById('descripcion').innerText = jsonFile.descripcion ;
             
             for(i=0; i<jsonFile.opciones.length; i++){
-                addItem(jsonFile.opciones[i]);
+                addItem(jsonFile.opciones[i], jsonFile.modalidad.cantidad);
             }
         }
 

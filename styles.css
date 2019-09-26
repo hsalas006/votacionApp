@@ -42,13 +42,10 @@ h1,h2,h3,h4{
     color: black;
     text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
-.container_s:hover .container_s:after{
+.container_s:active{
     opacity: 0.2;
-    transition: opacity 5s ease-in-out;
+    transition: opacity 3s linear;
 }
-
-
-
 
 .upload-btn-wrapper {
     position: absolute;
